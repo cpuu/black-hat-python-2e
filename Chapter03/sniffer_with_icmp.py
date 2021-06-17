@@ -21,11 +21,11 @@ class IP:
         self.src = header[8]
         self.dst = header[9]
 
-        # human readable IP addresses
+        # 사람이 이해하기 쉬운 IP 주소 형태로 표기
         self.src_address = ipaddress.ip_address(self.src)
         self.dst_address = ipaddress.ip_address(self.dst)
 
-        # map protocol constants to their names
+        # 프로토콜 이름에 알맞은 고유번호를 연계하여 저장
         self.protocol_map = {1: "ICMP", 6: "TCP", 17: "UDP"}
         try:
             self.protocol = self.protocol_map[self.protocol_num]
@@ -61,15 +61,17 @@ def sniff(host):
         while True:
             raw_buffer = sniffer.recvfrom(65535)[0]
             ip_header = IP(raw_buffer[0:20])
+            # IP헤더에 명시된 프로토콜 이름이 ICMP인 패킷에 대해서만 처리
             if ip_header.protocol == "ICMP":
                 print('Protocol: %s %s -> %s' % (ip_header.protocol,
                                                  ip_header.src_address, ip_header.dst_address))
                 print(
                     f'Version: {ip_header.ver} Header Length: {ip_header.ihl}  TTL: {ip_header.ttl}')
 
-                # calculate where our ICMP packet starts
+                # 해당 ICMP 패킷의 시작 부분 오프셋 계산
                 offset = ip_header.ihl * 4
                 buf = raw_buffer[offset:offset + 8]
+                # ICMP 구조체 생성
                 icmp_header = ICMP(buf)
                 print('ICMP -> Type: %s Code: %s\n' %
                       (icmp_header.type, icmp_header.code))
@@ -84,5 +86,5 @@ if __name__ == '__main__':
     if len(sys.argv) == 2:
         host = sys.argv[1]
     else:
-        host = '192.168.1.206'
+        host = '192.168.1.203'
     sniff(host)
