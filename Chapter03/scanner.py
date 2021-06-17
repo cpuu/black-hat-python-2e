@@ -95,8 +95,11 @@ class Scanner:
                         if ipaddress.ip_address(ip_header.src_address) in ipaddress.IPv4Network(SUBNET):
                             # 시그니처 문자열이 포함되어 있는지 확인
                             if raw_buffer[len(raw_buffer) - len(MESSAGE):] == bytes(MESSAGE, 'utf8'):
-                                hosts_up.add(str(ip_header.src_address))
-                                print(f'Host Up: {str(ip_header.src_address)}')
+                                tgt = str(ip_header.src_address)
+                                if tgt != self.host and tgt not in hosts_up:
+                                    hosts_up.add(str(ip_header.src_address))
+                                    print(f'Host Up: {tgt}')
+                                
         # CTRL-C 처리
         except KeyboardInterrupt:
             if os.name == 'nt':
