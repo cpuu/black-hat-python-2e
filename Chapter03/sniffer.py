@@ -2,7 +2,7 @@ import socket
 import os
 
 # 수신할 호스트 IP
-HOST = '192.168.1.206'
+HOST = '192.168.1.203'
 
 
 def main():
