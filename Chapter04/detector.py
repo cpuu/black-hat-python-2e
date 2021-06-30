@@ -27,7 +27,8 @@ def detect(srcdir=ROOT, tgtdir=FACES, train_dir=TRAIN):
         except AttributeError:
             print(f'No faces found in {fname}')
             continue
-            # highlight the faces in the image
+            
+        # 이미지 내의 얼굴 부분을 강조 
         for x1, y1, x2, y2 in rects:
             cv2.rectangle(img, (x1, y1), (x2, y2), (127, 255, 0), 2)
         cv2.imwrite(newname, img)
