@@ -17,3 +17,20 @@
 
 ## 소스코드 구성
 각 소스코드는 책의 각 장별로 폴더로 구분되어 있습니다. 
+
+```
+$ git clone https://github.com/cpuu/black-hat-python-2e.git
+$ cd black-hat-python-2e 
+$ ls
+Chapter02 Chapter03 Chapter04 Chapter05 Chapter06 Chapter07 Chapter08 Chapter09 Chapter10 Chapter11 README.md cover.jpg
+```
+
+## 원서
+### 제목
+[Black Hat Python, 2nd Edition (ISBN 9781718501126)](https://nostarch.com/black-hat-python2E)
+### 저자
+Justin Seitz and Tim Arnold
+
+
+## 문의
+도서를 구입해주셔서 감사합니다. 문의사항이 있으시거나 내용 중 도서 오류 또는 오탈자 제보가 필요하신 경우 cpuu@icloud.com 또는 [출판사 홈페이지](http://acornpub.co.kr/contact/errata)를 통해 알려주시기 부탁드립니다.
